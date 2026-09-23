@@ -38,5 +38,7 @@ def invoke(service, method, context):
 
     return service.check(context)
 
+    return service.check(context)
+
 def new_service():
     return FraudService()
