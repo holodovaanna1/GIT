@@ -3,9 +3,7 @@ from decimal import Decimal
 from app.support.types import Money, positive, choice
 from app.support.errors import DomainError
 
-
-# ЛР1: FraudCheckContext вместо словаря.
-@dataclass(frozen=True)
+frozen=True
 class FraudCheckContext:
     amount: Money
     currency: str
@@ -18,12 +16,7 @@ class FraudCheckContext:
         if not self.category or not self.category.strip():
             raise DomainError("INVALID_CONTEXT")
 
-    def describe(self) -> str:
-        """Бонусное задание: возвращает строку вида '100.00 EUR:RESTAURANT:0'."""
-        return f"{self.amount.amount:.2f} {self.currency}:{self.category}:0"
-
-
-@dataclass(frozen=True)
+frozen=True
 class FraudResult:
     score: int
     triggered_rules: tuple

@@ -1,19 +1,17 @@
 from app.domain.fraud import FraudCheckContext, FraudResult
 
-
 class FraudService:
     
 
     def check(self, context: FraudCheckContext) -> FraudResult:
+        
         score = 0
         codes = []
 
-        # Проверка 1: Крупная сумма (больше 1000)
         if context.amount.amount > 1000:
             score += 40
             codes.append("LARGE_AMOUNT")
 
-        # Проверка 2: Опасная категория трат (GAMBLING)
         if context.category == "GAMBLING":
             score += 40
             codes.append("HIGH_RISK_MERCHANT")
@@ -24,10 +22,8 @@ class FraudService:
 def make_entity(amount, merchant_category, recent_count=0):
     return dict(amount=amount, merchant_category=merchant_category, recent_count=recent_count)
 
-
 def view(context):
     return dict(context)
-
 
 def invoke(service, method, context):
     if method != "check":
@@ -42,6 +38,7 @@ def invoke(service, method, context):
 
     return service.check(context)
 
+    return service.check(context)
 
 def new_service():
     return FraudService()
