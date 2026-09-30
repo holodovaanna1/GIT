@@ -1,13 +1,7 @@
-from dataclasses import dataclass
 from decimal import Decimal
 from app.support.types import Money, positive, choice
 from app.support.errors import DomainError
 
-frozen=True
-class FraudCheckContext:
-    amount: Money
-    currency: str
-    category: str
 
 # ЛР1: FraudCheckContext вместо словаря.
 class FraudCheckContext:
@@ -16,29 +10,28 @@ class FraudCheckContext:
         positive(amount)
         if not currency or not currency.strip():
             raise DomainError("INVALID_CONTEXT")
-        if not self.category or not self.category.strip():
+        if not category or not category.strip():
             raise DomainError("INVALID_CONTEXT")
 
-<<<<<<< Updated upstream
-frozen=True
-=======
+
         self.amount = amount
         self.currency = currency
         self.category = category
 
 
->>>>>>> Stashed changes
-class FraudResult:
-    score: int
-    triggered_rules: tuple
 
-    def __post_init__(self):
-        if type(self.score) is not int or not 0 <= self.score <= 100:
+class FraudResult:
+
+    def __init__(self, score: int, triggered_rules: tuple):
+        if type(score) is not int or not 0 <= score <= 100:
             raise DomainError("INVALID_RESULT")
-        codes = tuple(self.triggered_rules)
+
+        codes = tuple(triggered_rules)
         if any(not isinstance(code, str) or not code.strip() for code in codes):
             raise DomainError("INVALID_RESULT")
-        object.__setattr__(self, "triggered_rules", codes)
+
+        self.score = score
+        self.triggered_rules = codes
 
     @property
     def decision(self):

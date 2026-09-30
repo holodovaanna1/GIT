@@ -25,6 +25,7 @@ def make_entity(amount, merchant_category, recent_count=0):
 def view(context):
     return dict(context)
 
+
 def invoke(service, method, context):
     if method != "check":
         raise ValueError(method)
@@ -38,7 +39,6 @@ def invoke(service, method, context):
 
     return service.check(context)
 
-    return service.check(context)
 
 def new_service():
     return FraudService()
