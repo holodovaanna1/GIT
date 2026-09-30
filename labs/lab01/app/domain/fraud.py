@@ -9,14 +9,25 @@ class FraudCheckContext:
     currency: str
     category: str
 
-    def __post_init__(self):
-        positive(self.amount)
-        if not self.currency or not self.currency.strip():
+# ЛР1: FraudCheckContext вместо словаря.
+class FraudCheckContext:
+
+    def __init__(self, amount: Money, currency: str, category: str):
+        positive(amount)
+        if not currency or not currency.strip():
             raise DomainError("INVALID_CONTEXT")
         if not self.category or not self.category.strip():
             raise DomainError("INVALID_CONTEXT")
 
+<<<<<<< Updated upstream
 frozen=True
+=======
+        self.amount = amount
+        self.currency = currency
+        self.category = category
+
+
+>>>>>>> Stashed changes
 class FraudResult:
     score: int
     triggered_rules: tuple
