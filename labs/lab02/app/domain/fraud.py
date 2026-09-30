@@ -37,6 +37,7 @@ class FraudResult:
         self.score = score
         self.triggered_rules = codes
 
+    @property
     def decision(self):
         return "DECLINE" if self.score >= 60 else "ALLOW"
 
