@@ -3,12 +3,22 @@ from app.support.types import Money, positive, choice
 from app.support.errors import DomainError
 
 
-    def __post_init__(self):
-        positive(self.amount)
-        if not self.currency or not self.currency.strip():
+# ЛР1: FraudCheckContext вместо словаря.
+class FraudCheckContext:
+
+    def __init__(self, amount: Money, currency: str, category: str):
+        positive(amount)
+        if not currency or not currency.strip():
             raise DomainError("INVALID_CONTEXT")
         if not category or not category.strip():
             raise DomainError("INVALID_CONTEXT")
+
+
+        self.amount = amount
+        self.currency = currency
+        self.category = category
+
+
 
 class FraudResult:
 
