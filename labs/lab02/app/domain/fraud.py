@@ -24,7 +24,6 @@ class FraudCheckContext:
 
 
 class FraudResult:
-
     def __init__(self, score: int, triggered_rules: tuple):
         # ЛР2: score — целое от 0 до 100
         if type(score) is not int or not 0 <= score <= 100:
