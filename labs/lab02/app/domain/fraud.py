@@ -39,4 +39,5 @@ class FraudResult:
 
     def decision(self):
         return "DECLINE" if self.score >= 60 else "ALLOW"
+
     
