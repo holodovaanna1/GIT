@@ -40,5 +40,6 @@ class FraudResult:
     @property
     def decision(self):
         return "DECLINE" if self.score >= 60 else "ALLOW"
+    
 
     
