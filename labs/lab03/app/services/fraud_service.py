@@ -1,10 +1,14 @@
 from app.domain.fraud import FraudCheckContext, FraudResult
+from app.domain.risk_rules import LargeAmountRule, HighRiskMerchantRule
 from app.support.errors import DomainError
 from app.support.types import risk_points
 
 class FraudService:
-    def __init__(self, rules=()):
-        self._rules = tuple(rules)
+    def __init__(self, rules=None):
+        if rules is None:
+            self._rules = (LargeAmountRule(), HighRiskMerchantRule())
+        else:
+            self._rules = tuple(rules)
 
     def check(self, context):
         if not isinstance(context, FraudCheckContext):
@@ -15,7 +19,7 @@ class FraudService:
 
         for rule in self._rules:
             points = rule.evaluate(context)
-            
+
             if type(points) is not int or points < 0 or points > 100:
                 raise DomainError("INVALID_RESULT")
 
@@ -39,3 +43,8 @@ def view(entity):
 
 def new_service():
     return FraudService()
+
+
+
+
+
