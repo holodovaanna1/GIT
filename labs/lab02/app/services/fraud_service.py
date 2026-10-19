@@ -1,17 +1,18 @@
 from app.domain.fraud import FraudCheckContext, FraudResult
 from app.support.errors import DomainError
-from app.support.types import risk_points
 
 class FraudService:
+
     def __init__(self, rules=()):
         self._rules = tuple(rules)
 
-    def check(self, context):
+    def check(self, context: FraudCheckContext) -> FraudResult:
         amount_value = context.amount.amount
-        currency = getattr(context.amount, "currency", None)
+        currency = context.amount.currency
 
         if currency != "EUR":
             raise DomainError("CURRENCY_MISMATCH")
+
         if amount_value <= 0:
             raise DomainError("INVALID_CONTEXT")
 
@@ -25,9 +26,11 @@ class FraudService:
         if amount_value > 1000:
             score += 40
             codes.append("LARGE_AMOUNT")
+
         if context.merchant_category == "GAMBLING":
             score += 40
             codes.append("HIGH_RISK_MERCHANT")
+
         if recent >= 5:
             score += 20
             codes.append("MANY_RECENT_ATTEMPTS")
@@ -47,10 +50,10 @@ def invoke(service, method, *args, **kwargs):
 
 def view(entity):
     return {
-        'amount': entity.amount,
-        'merchant_category': entity.merchant_category,
-        'recent_count': entity.recent_count,
-    }   
+        "amount": entity.amount,
+        "merchant_category": entity.merchant_category,
+        "recent_count": entity.recent_count,
+    }
 
 def new_service():
     return FraudService()
