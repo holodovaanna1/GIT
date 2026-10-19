@@ -3,14 +3,17 @@ from app.support.types import money, decimal_value
 from app.support.errors import DomainError
 
 
-class FraudRule:
+class FraudRule(ABC):  # ← Наследуем от ABC
     code = ""
+
+    @abstractmethod  # ← Делаем метод абстрактным
     def evaluate(self, context):
         raise NotImplementedError
 
 
 class LargeAmountRule(FraudRule):
     code = "LARGE_AMOUNT"
+
     def evaluate(self, context):
         if context.amount.amount > 1000:
             return 40
