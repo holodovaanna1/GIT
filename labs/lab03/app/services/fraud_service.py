@@ -37,5 +37,5 @@ def invoke(service, method, *args, **kwargs):
 def view(entity):
     return {'amount': entity.amount, 'merchant_category': entity.merchant_category, 'recent_count': entity.recent_count}
 
-def new_service():   
+def new_service():
     return FraudService()
