@@ -27,3 +27,4 @@ class HighRiskMerchantRule(FraudRule):
         if context.merchant_category == "GAMBLING":
             return 40
         return 0
+      
