@@ -3,10 +3,10 @@ from app.support.types import money, decimal_value
 from app.support.errors import DomainError
 
 
-class FraudRule(ABC):  # ← Наследуем от ABC
+class FraudRule(ABC):  
     code = ""
 
-    @abstractmethod  # ← Делаем метод абстрактным
+    @abstractmethod  
     def evaluate(self, context):
         raise NotImplementedError
 
@@ -28,3 +28,9 @@ class HighRiskMerchantRule(FraudRule):
             return 40
         return 0
       
+class ManyRecentAttemptsRule(FraudRule):
+    code = "MANY_RECENT_ATTEMPTS"
+    def evaluate(self, context):
+        if context.recent_count >= 3:
+            return 20
+        return 0

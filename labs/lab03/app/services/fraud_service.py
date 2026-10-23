@@ -1,12 +1,16 @@
 from app.domain.fraud import FraudCheckContext, FraudResult
-from app.domain.risk_rules import LargeAmountRule, HighRiskMerchantRule
+from app.domain.risk_rules import (
+    LargeAmountRule, 
+    HighRiskMerchantRule, 
+    ManyRecentAttemptsRule  
+)
 from app.support.errors import DomainError
 from app.support.types import risk_points
 
 class FraudService:
     def __init__(self, rules=None):
         if rules is None:
-            self._rules = (LargeAmountRule(), HighRiskMerchantRule())
+            self._rules = (LargeAmountRule(), HighRiskMerchantRule(), ManyRecentAttemptsRule())
         else:
             self._rules = tuple(rules)
 
@@ -19,7 +23,7 @@ class FraudService:
 
         for rule in self._rules:
             points = rule.evaluate(context)
-
+            
             if type(points) is not int or points < 0 or points > 100:
                 raise DomainError("INVALID_RESULT")
 
@@ -39,12 +43,13 @@ def invoke(service, method, *args, **kwargs):
     return getattr(service, method)(*args, **kwargs)
 
 def view(entity):
-    return {'amount': entity.amount, 'merchant_category': entity.merchant_category, 'recent_count': entity.recent_count}
+    return {
+        'amount': entity.amount, 
+        'merchant_category': entity.merchant_category, 
+        'recent_count': entity.recent_count
+    }
 
 def new_service():
     return FraudService()
-
-
-
 
 
