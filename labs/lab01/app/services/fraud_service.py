@@ -12,23 +12,22 @@ class FraudService:
         if context.category == "GAMBLING":
             score += 40
             codes.append("HIGH_RISK_MERCHANT")
-
         return FraudResult(score, tuple(codes))
 
 def make_entity(amount, merchant_category, recent_count=0):
-    return dict(amount=amount, merchant_category=merchant_category,
-                recent_count=recent_count)
+    return FraudCheckContext(
+        amount=amount,
+        category=merchant_category,
+        recent_count=recent_count)
 
 def view(context):
     if isinstance(context, FraudCheckContext):
-        return dict(
-            amount=context.amount,
-            currency=context.currency,
-            category=context.category,
-            recent_count=context.recent_count,
-        )
+        return {
+            "amount": context.amount,
+            "merchant_category": context.category,
+            "recent_count": context.recent_count,
+        }
     return dict(context)
-
 
 def invoke(service, method, context):
     if method != "check":
@@ -37,17 +36,13 @@ def invoke(service, method, context):
     if isinstance(context, dict):
         context = FraudCheckContext(
             amount=context["amount"],
-            currency=context.get("currency", "EUR"),
-            category=context.get("category")
-                     or context.get("merchant_category", "UNKNOWN"),
-            recent_count=context.get("recent_count", 0),
+            category=context.get("category") or context.get("merchant_category", "UNKNOWN"),
+            recent_count=context.get("recent_count", 0)
         )
-
     return service.check(context)
 
 def new_service():
     return FraudService()
-
 
 
 
