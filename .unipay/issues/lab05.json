@@ -1,0 +1,39 @@
+{
+  "course": "unipay-oop",
+  "files": {
+    ".github/workflows/lab05.yml": "4df159c88f0e19f9065bc2f44b8208b9f0dc8d518d344d17635aad9d77bc747d",
+    "labs/lab05/REFERENCE.md": "e6e9ec54c9d9a060c9cb755b2daa771fdc90def4657c95bc23a8fe4764fe6aca",
+    "labs/lab05/STARTER-STATE.md": "bfe4bffdda0c2ff4d73df029ed12c3b0a493469970a087d8499c9483e1290a91",
+    "labs/lab05/TASK.md": "ce35408d88a1bb881785bc453d1aa6d4bd198c73baa66d9758051bb020fca870",
+    "labs/lab05/app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "labs/lab05/app/api.py": "84b07fb33a88731dfed1dae1721e9b67d9db98868ee406a80bf37e835f8c47bc",
+    "labs/lab05/app/domain/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "labs/lab05/app/domain/adapters.py": "ae84fda0cee0c6e12e148d1fde49f2261affc2a4c4b690c2b8a3f090b4bd49a4",
+    "labs/lab05/app/domain/fraud.py": "cbb2285a1a92cf9e947ed063ef545fd00118e31a9bc19e72384d7e867499c34e",
+    "labs/lab05/app/domain/risk_rules.py": "d03026af46abab491953079516eec1f4146346f30eca3079b41a81b5f379649c",
+    "labs/lab05/app/services/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "labs/lab05/app/services/assembly.py": "f57c2258e8d873439afbf601627d86655bf90310422db8aa66165574959064c0",
+    "labs/lab05/app/services/fraud_service.py": "d808c91194a472d328980d145e8a48b2d53fa9e37d82b08bed729f6aa9400b58",
+    "labs/lab05/app/support/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "labs/lab05/app/support/errors.py": "ce3b7a67a344a59c282e6dce34f178dd047466712697eaa8dbd9cace93fabaf3",
+    "labs/lab05/app/support/money.py": "f498773c7642b2a19682b8d71b08cf8f049131ca5e363a2ac111825905b15f5c",
+    "labs/lab05/app/support/types.py": "75b7db0ec607e4cf85efaa37e8cc7d484f8d8d950c6571dc4cac5d55b2acb827",
+    "labs/lab05/bonus_tests/test_bonus.py": "572cd6505343135e23b03e2f4a15bebc5fac2394acc01cb1bc96c18827449be2",
+    "labs/lab05/conftest.py": "155c516061e0bfbe0f30e4215d6098c203a0fa0f7201afd88fe9de9b1459bddc",
+    "labs/lab05/protected-files.json": "d9b0a6ba2c39d7bf28c669ac7222927d7f0141820d1a36b0a091743e126eb53b",
+    "labs/lab05/pytest.ini": "0a7768bbb53a890047c800347d2a817bbcc0294dfa4f48b8457954b5d75a6f5a",
+    "labs/lab05/tests/test_contract.py": "78856c6685bbf0960cc4f2daa996d8e4f7df4efc8deca39158e792218d19740b",
+    "labs/lab05/tests/test_progression.py": "0d26c327ff0faf1975867afb6c83714a85142dc66dfdea0dc3b22e00ed238ee4",
+    "labs/lab05/tests/test_review_contract.py": "b00fd7df9e978c7db2d9fa127503bf8045b3707cd835603e970935372a199839"
+  },
+  "format": 1,
+  "lab": 5,
+  "runtime_sha256": {
+    ".gitattributes": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c",
+    "check.py": "13d78e782ae8486fd09b71adb8fe2d57b9555c17333cbaa233b2ebc504dfaa3a",
+    "requirements.txt": "693d97bdd0fb5283060c3efadf25a90d0c3b59be09b25fac59f5f1c68a1f993b"
+  },
+  "source_commit": "b11440942dd066bd4130f8045b034095a611dcfe",
+  "source_tree": "6fe5d9b704d98dba3c4698ae79d87ff84d123db1",
+  "variant": "fraud"
+}
